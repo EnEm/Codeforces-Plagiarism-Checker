@@ -25,8 +25,3 @@ def subFetch(contest,submission):
     print('Completed Submissions Fetching')
 
     return submissions
-
-if __name__ == "__main__":    
-    contest = input('Enter the contest id ( not the round number ): ')
-    submission = input('Enter the submission id : ')
-    print( subFetch( contest, submission ) )

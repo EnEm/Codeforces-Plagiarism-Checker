@@ -34,5 +34,10 @@ if __name__ == "__main__":
 
     urls = PlagCheck( contest , submission)
 
+    fw=open('result.csv','w')
+
     for url in urls:
         print( str(url[0]) + ' , ' + url[1] )
+        fw.write( str(url[0]) + ' , ' + url[1] + '\n' )
+
+    fw.close()
