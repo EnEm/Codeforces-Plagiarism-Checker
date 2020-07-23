@@ -9,4 +9,4 @@ For a particular submission at codeforces, Checks moss for every past submission
 - chromedriver
 
 ### How tu use
-- run main.py and then follow the instrructions
+- run main.py and then follow the instructions
