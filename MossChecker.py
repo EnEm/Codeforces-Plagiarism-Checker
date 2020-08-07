@@ -28,12 +28,12 @@ def MossCheck(contest,submission,files):
         try:
             lines = requests.get(output[-2]).text.split('\n')
 
-            for line in lines:
-                if line.find(str(submission))!=-1:
-                    urls.append(( int(line[-8:-6]) , line[ line.find('\"') + 1 : line.find( '\"' , line.find('\"') + 1 ) ] ))
+            for i in range(len(lines)):
+                if lines[i].find(str(submission))!=-1:
+                    urls.append({'match': int(lines[i][-8:-6]), 'moss_url': lines[i][ lines[i].find('\"') + 1 : lines[i].find( '\"' , lines[i].find('\"') + 1 ) ], 'cf_url': 'https://codeforces.com/contest/' + str(contest) + '/submission/' + lines[i+1][ lines[i+1].find('codes/') + 6 : lines[i+1].find( '.' , lines[i+1].find('codes/') +6) ]})
         except:
             file_start -= BLOCK_SIZE
 
-    urls.sort
+    urls = sorted(urls, key = lambda k: k['match'], reverse = True)
 
     return urls

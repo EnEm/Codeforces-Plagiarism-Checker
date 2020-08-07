@@ -37,7 +37,7 @@ if __name__ == "__main__":
     fw=open('result.csv','w')
 
     for url in urls:
-        print( str(url[0]) + ' , ' + url[1] )
-        fw.write( str(url[0]) + ' , ' + url[1] + '\n' )
+        print(str(url['match']) + ' , ' + url['moss_url'] + ' , ' + url['cf_url'] )
+        fw.write(str(url['match']) + ' , ' + url['moss_url'] + ' , ' + url['cf_url']  + '\n' )
 
     fw.close()

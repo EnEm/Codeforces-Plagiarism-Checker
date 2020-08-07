@@ -25,10 +25,17 @@ def subDownload(contest,submission,submissions):
 
         print('\rDownloading Codes : ' + str(i+1) + '/' + str(len(submissions)) , end='')
 
-        if os.path.exists('codes/' + str(submissions[i]) + '.' + language):
+        flag_exist = False
+        lang_exist = None
 
-            files.append('codes/' + str(submissions[i]) + '.' + language)
-            
+        for filename in os.listdir('codes'):
+            if os.path.splitext(filename)[0] == str(submissions[i]):
+                flag_exist = True
+                lang_exist = os.path.splitext(filename)[1][1:]
+
+        if flag_exist:
+            if lang_exist == language:
+                files.append('codes/' + str(submissions[i]) + '.' + lang_exist)
             continue
 
         driver.get('https://codeforces.com/contest/' + str(contest) + '/submission/' + str(submissions[i]))
@@ -38,21 +45,20 @@ def subDownload(contest,submission,submissions):
         source_text = soup_code.find( "pre", id="program-source-text" )
 
         if source_text['class'][1][5:] == language:
+            files.append('codes/' + str(submissions[i]) + '.' + source_text['class'][1][5:])
 
-            files.append('codes/' + str(submissions[i]) + '.' + language)
+        fn = open('codes/' + str(submissions[i]) + '.' + source_text['class'][1][5:] , 'w' )
 
-            fn = open('codes/' + str(submissions[i]) + '.' + language , 'w' )
+        lines = source_text.find_all("li")
 
-            lines = source_text.find_all("li")
+        for line in lines:
+            words=line.stripped_strings
+            for word in words:
+                fn.write(repr(word.encode('utf-8'))[2:-1] + ' ')
 
-            for line in lines:
-                words=line.stripped_strings
-                for word in words:
-                    fn.write(repr(word.encode('utf-8'))[2:-1] + ' ')
+            fn.write('\n')
 
-                fn.write('\n')
-
-            fn.close()
+        fn.close()
 
         time.sleep(2)
 
