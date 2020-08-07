@@ -6,7 +6,6 @@ For a particular submission at codeforces, Checks moss for every past submission
 - perl
 - beautifulsoup
 - selenium
-- chromedriver
 
 ### How to use
 - run main.py and then follow the instructions
