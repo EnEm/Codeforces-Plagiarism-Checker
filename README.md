@@ -8,5 +8,5 @@ For a particular submission at codeforces, Checks moss for every past submission
 - selenium
 - chromedriver
 
-### How tu use
+### How to use
 - run main.py and then follow the instructions
