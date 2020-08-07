@@ -19,7 +19,7 @@ def subFetch(contest,submission):
     submissions=[]
 
     for sub in r.json()['result']:
-        if sub['problem'] == problem and sub['verdict'] == 'OK':
+        if sub['problem'] == problem and ( sub['verdict'] == 'OK' or sub['id'] == submission ):
             submissions.append( sub['id'] )
             
     print('Completed Submissions Fetching')

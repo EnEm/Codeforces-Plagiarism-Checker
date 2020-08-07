@@ -2,6 +2,7 @@ from bs4 import *
 import requests
 import json
 import time
+import os
 from selenium import webdriver
 
 def subDownload(contest,submission,submissions):
@@ -10,7 +11,7 @@ def subDownload(contest,submission,submissions):
 
     options = webdriver.ChromeOptions()
     options.add_argument('--headless')
-    driver = webdriver.Chrome( executable_path="D:/Stuff/chromedriver/chromedriver.exe", options=options )
+    driver = webdriver.Chrome( executable_path="chromedriver.exe", options=options )
 
     driver.get('https://codeforces.com/contest/' + str(contest) + '/submission/' + str(submission))
     
@@ -23,6 +24,12 @@ def subDownload(contest,submission,submissions):
     for i in range(0,len(submissions)):
 
         print('\rDownloading Codes : ' + str(i+1) + '/' + str(len(submissions)) , end='')
+
+        if os.path.exists('codes/' + str(submissions[i]) + '.' + language):
+
+            files.append('codes/' + str(submissions[i]) + '.' + language)
+            
+            continue
 
         driver.get('https://codeforces.com/contest/' + str(contest) + '/submission/' + str(submissions[i]))
 
