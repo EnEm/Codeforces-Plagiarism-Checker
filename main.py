@@ -2,7 +2,7 @@ import sys
 import os
 from SubmissionFetcher import subFetch
 from SubmissionDownloader import subDownload
-from MossChecker import MossCheck
+from MossChecker import mossCheck
 
 
 def PlagCheck(contest,submission):
@@ -14,7 +14,7 @@ def PlagCheck(contest,submission):
 
     files = subDownload( contest , submission , submissions )
 
-    urls = MossCheck( contest , submission , files )
+    urls = mossCheck( contest , submission , files )
 
     return urls
 

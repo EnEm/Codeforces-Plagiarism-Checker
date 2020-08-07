@@ -2,7 +2,7 @@ import os
 import requests
 import time
 
-def MossCheck(contest,submission,files):
+def mossCheck(contest,submission,files):
 
     urls=[]
 
